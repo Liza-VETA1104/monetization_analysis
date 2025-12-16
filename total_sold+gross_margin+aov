@@ -24,3 +24,12 @@ group by
 	category
 order by
 	gross_profit desc
+
+--средний чек
+select
+	round(avg(sum_per_order), 2) as aov
+from
+	(
+select oi.order_id, sum(oi.total_price) as sum_per_order
+from order_items oi 
+group by oi.order_id)t
